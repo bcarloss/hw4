@@ -8,8 +8,6 @@ class PlacesController < ApplicationController
   def show
     @place = current_user.places.find(params[:id])
     @entries = @place.entries
-  rescue ActiveRecord::RecordNotFound
-    redirect_to places_path, alert: "Place not found."
   end
 
   def new
@@ -30,4 +28,9 @@ class PlacesController < ApplicationController
   def place_params
     params.require(:place).permit(:name)
   end
+
+  def require_login
+    redirect_to login_path unless current_user
+  end
 end
+

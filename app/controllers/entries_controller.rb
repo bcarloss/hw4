@@ -1,16 +1,12 @@
 class EntriesController < ApplicationController
-  before_action :require_login
+  before_action :set_place, only: [:new, :create]
 
-  # 'new' action to display the form for a new entry
   def new
-    @place = current_user.places.find(params[:place_id])
     @entry = @place.entries.build
   end
 
-  # 'create' action to handle form submission
   def create
-    @place = current_user.places.find(params[:place_id])
-    @entry = @place.entries.build(entry_params.merge(user: current_user))
+    @entry = @place.entries.build(entry_params)
     if @entry.save
       redirect_to place_path(@place), notice: 'Entry was successfully created.'
     else
@@ -19,7 +15,11 @@ class EntriesController < ApplicationController
   end
 
   private
-  
+
+  def set_place
+    @place = current_user.places.find(params[:place_id])
+  end
+
   def entry_params
     params.require(:entry).permit(:title, :description, :occurred_on, :image)
   end
