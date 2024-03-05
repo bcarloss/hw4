@@ -6,19 +6,20 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # Log the user in after sign up
+      # Log in the user
       session[:user_id] = @user.id
-      redirect_to places_path, notice: "Account successfully created!"
+      # Redirect to the places path
+      redirect_to places_path, notice: 'Account was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      # If save fails, render the new user form again
+      render :new
     end
   end
 
   private
 
+  # Strong parameters to prevent mass assignment vulnerability
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 end
-
-
