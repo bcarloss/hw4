@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: [:index, :show]
 
   def index
     @places = current_user.places
@@ -11,13 +11,13 @@ class PlacesController < ApplicationController
   end
 
   def new
-    @place = Place.new
+    @place = current_user.places.build
   end
 
   def create
     @place = current_user.places.build(place_params)
     if @place.save
-      redirect_to places_path, notice: 'Place was successfully created.'
+      redirect_to @place, notice: 'Place was successfully created.'
     else
       render :new
     end
@@ -30,7 +30,9 @@ class PlacesController < ApplicationController
   end
 
   def require_login
-    redirect_to login_path unless current_user
+    unless current_user
+      flash[:alert] = "You must be logged in to access this section"
+      redirect_to login_path
+    end
   end
 end
-

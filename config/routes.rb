@@ -3,18 +3,21 @@ Rails.application.routes.draw do
   root 'places#index'
 
   # Nested routes for places and their entries
-  resources :places do
-    resources :entries, only: [:create, :new, :show] # Entries are nested within places
+  resources :places, only: [:index, :show, :new, :create] do
+    resources :entries, only: [:create, :new, :show]
   end
 
-  # Routes for user sessions
+  # Resourceful routes for user session (although new and create are enough for sessions)
   resources :sessions, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create] # If you have other user actions, include them here
 
-  # Custom route for login, logout, and signup
-  get 'login', to: 'sessions#new'
+  # Resourceful routes for users
+  resources :users, only: [:new, :create]
+
+  # Custom routes for login, logout, and signup
+  get 'login', to: 'sessions#new', as: :login
   post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
-  get 'signup', to: 'users#new'
-  post 'users', to: 'users#create'
+  get 'logout', to: 'sessions#destroy', as: :logout
+  get 'signup', to: 'users#new', as: :signup
+  post 'signup', to: 'users#create'
 end
+

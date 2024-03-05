@@ -1,12 +1,31 @@
-<%= form_with(scope: :session, url: login_path, local: true) do |form| %>
-  <div class="form-group">
-    <%= form.label :email %>
-    <%= form.email_field :email, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= form.label :password %>
-    <%= form.password_field :password, class: 'form-control', required: true %>
-  </div>
-  <%= form.submit "Login", class: 'btn btn-primary' %>
-<% end %>
+<!-- app/views/sessions/new.html.erb -->
 
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Login
+        </div>
+        <div class="card-body">
+          <%= form_with(scope: :session, url: login_path, local: true) do |form| %>
+            <div class="form-group">
+              <%= form.label :email %>
+              <%= form.email_field :email, class: 'form-control', required: true %>
+            </div>
+            <div class="form-group">
+              <%= form.label :password %>
+              <%= form.password_field :password, class: 'form-control', required: true %>
+            </div>
+            <div class="form-group">
+              <%= form.submit "Login", class: 'btn btn-primary w-100' %>
+            </div>
+          <% end %>
+        </div>
+        <div class="card-footer text-center">
+          <%= link_to 'Signup', signup_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
