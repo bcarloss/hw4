@@ -6,17 +6,24 @@ class Entry < ApplicationRecord
 
   # Validations
   validates :title, :description, :occurred_on, presence: true
-  # Add any other validations you might need for an entry
+  validates :image, presence: true
+  validate :validate_image
 
-  # For image validation, you can add file presence, content type, and size validators if desired
-  validates :image, content_type: { in: ['image/png', 'image/jpg', 'image/jpeg'],
-                                    message: 'must be a valid image format' },
-                    size: { less_than: 5.megabytes,
-                            message: 'should be less than 5MB' }
-
-  # To retrieve a variant of the image, you might have a method like this:
   def display_image
     image.variant(resize_to_limit: [500, 500]).processed
   end
+
+  private
+
+  def validate_image
+    if image.attached?
+      if !image.content_type.in?(%('image/png', 'image/jpg', 'image/jpeg'))
+        errors.add(:image, 'must be a PNG, JPG, or JPEG')
+      elsif image.blob.byte_size > 5.megabytes
+        errors.add(:image, 'is too large, should be less than 5MB')
+      end
+    end
+  end
 end
+
 
