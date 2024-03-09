@@ -1,1 +1,23 @@
-/* Application styles */
+/* custom.css */
+body {
+  background-color: #f7f7f7; /* Light grey background */
+}
+
+.card {
+  margin-top: 10%;
+}
+
+.btn-primary {
+  background-color: #0056b3; /* Adjust the color to your preference */
+}
+
+.btn-link {
+  color: #0056b3; /* Adjust the color to match the button if desired */
+}
+
+.container {
+  padding-top: 5rem;
+}
+
+
+
