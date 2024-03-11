@@ -18,7 +18,7 @@
       <div class="col-md-4 mb-4">
         <div class="card">
           <% if entry.image.attached? %>
-            <%= image_tag(entry.display_image, class: "card-img-top") %>
+            <%= image_tag(entry.image, class: "card-img-top") if entry.image.attached? %>
           <% else %>
             <!-- Placeholder if no image is attached -->
             <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 200px;">
