@@ -1,13 +1,123 @@
-/* app/assets/stylesheets/custom.css */
+/* Custom Stylesheet */
+
+/* Body background to a light gray for some contrast */
 body {
-  background-color: #f8f9fa; /* This sets a grey background color to the body */
+  background-color: #fafafa;
 }
 
-.navbar-custom {
-  background-color: #004085; /* This sets a blue background color to the navbar */
+/* Navbar customizations */
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
 }
 
-/* Add more custom styles as needed */
+.nav-link {
+  color: #262626;
+  font-weight: bold;
+}
+
+/* Card customizations for entries */
+.card {
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Placeholder styling */
+.card .card-img-top.bg-light {
+  color: #262626;
+  font-size: 1rem;
+}
+
+/* Card title and text adjustments */
+.card-title {
+  color: #262626;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #262626;
+  font-size: 0.9rem;
+}
+
+/* Date text color */
+.card-text small.text-muted {
+  color: #8e8e8e;
+}
+
+/* Button customizations */
+.btn-primary {
+  background-color: #3897f0;
+  border-color: #3897f0;
+}
+
+.btn-primary:hover {
+  background-color: #2787e0;
+  border-color: #2787e0;
+}
+
+.btn-secondary {
+  background-color: #fafafa;
+  color: #262626;
+  border-color: #dbdbdb;
+}
+
+.btn-secondary:hover {
+  background-color: #f0f0f0;
+}
+
+/* Spacing adjustments */
+.card-body {
+  padding: 1rem;
+}
+
+/* Aligns the 'No image available' text in the center vertically and horizontally */
+.card-img-top.bg-light {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px; /* Adjust based on your preference */
+  font-weight: bold;
+}
+
+/* New Entry and Back to All Places buttons alignment and styling */
+.text-center {
+  margin-top: 2rem;
+}
+
+.btn {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
+
+/* Flash message adjustments */
+.alert {
+  position: fixed;
+  top: 75px; /* below the navbar */
+  right: 1rem;
+  left: 1rem;
+  z-index: 5000;
+  border: none;
+}
+
+.alert-dismissible .close {
+  padding: 0.75rem;
+  color: #000000;
+  opacity: 1;
+}
+
+/* Container top margin */
+.container.mt-3 {
+  margin-top: 4rem;
+}
+
 
 
 
