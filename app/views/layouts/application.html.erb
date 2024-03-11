@@ -1,29 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tacostagram Final</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>YourAppName</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <link rel="stylesheet" href="/stylesheets/application.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3pVGRnBzm0x7PgWNV/xmRoKF1pC3pysSDkRtYuhr/3vMAZ6TRXcGp6b2z" crossorigin="anonymous">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
-
 <body>
-  <div>
-    <%= flash["notice"] %>
-  </div>
-  <nav>
-    <%= link_to 'Home', root_path %>
-    <% if logged_in? %>
-      <%= link_to 'Logout', logout_path, method: :delete %>
-    <% else %>
-      <%= link_to 'Login', login_path %>
-      <%= link_to 'Signup', new_user_path %>
-    <% end %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <%= link_to 'YourAppName', root_path, class: 'navbar-brand' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <% if logged_in? %>
+            <li class="nav-item">
+              <%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Login', login_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Signup', new_user_path, class: 'nav-link' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  <%= yield %>
+  <%# Flash Messages %>
+  <% flash.each do |type, message| %>
+    <div class="alert alert-<%= type == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert">
+      <%= message %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
 
+  <%# Main Content %>
+  <div class="container mt-4">
+    <%= yield %>
+  </div>
+
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity: "sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj", crossorigin: "anonymous" %>
+  <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.6/dist/umd/popper.min.js', integrity: "sha384-+GlhL5Qj5qgWSTc6pPiRDPamBq8jm0wlvT1GBo9u4Phfmnm8DjDQ5IUE9hb7t1Lw", crossorigin: "anonymous" %>
+  <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity: "sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shc1kH4G7j1nH4ylC5XqjefdpbbRf0DO7cT7X", crossorigin: "anonymous" %>
 </body>
 </html>
+
 

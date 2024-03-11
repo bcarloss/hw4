@@ -1,23 +1,14 @@
-/* custom.css */
+/* app/assets/stylesheets/custom.css */
 body {
-  background-color: #f7f7f7; /* Light grey background */
+  background-color: #f8f9fa; /* This sets a grey background color to the body */
 }
 
-.card {
-  margin-top: 10%;
+.navbar-custom {
+  background-color: #004085; /* This sets a blue background color to the navbar */
 }
 
-.btn-primary {
-  background-color: #0056b3; /* Adjust the color to your preference */
-}
+/* Add more custom styles as needed */
 
-.btn-link {
-  color: #0056b3; /* Adjust the color to match the button if desired */
-}
-
-.container {
-  padding-top: 5rem;
-}
 
 
 
